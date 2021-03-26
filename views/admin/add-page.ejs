@@ -1,0 +1,24 @@
+<%- include('../layout/adminheader') %>
+	<h2 class="page-title">add a page</h2>
+	<a href="/admin/pages" class="btn btn-primary">Back to all pages</a>
+	<br>
+	<br>
+
+
+	<form method="post" action="/admin/pages/add-page">
+		<div class="form-group">
+			<label>Title</label>
+			<input type="text" name="title" class="form-control" value="<%- title %>" placeholder="title">
+		</div>
+		<div class="form-group">
+			<label>Link</label>
+			<input type="text" name="link" class="form-control" placeholder="link" value="<%- link %>">
+		</div>
+		<div class="form-group">
+			<label>Content *</label>
+			<textarea name="content" class="form-control" id="editor" cols="30" rows="10" placeholder="content"><%- content %></textarea>
+		</div>
+
+		<button class="btn btn-default">Kirim</button>
+	</form>
+	<%- include('../layout/adminfooter') %>

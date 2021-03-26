@@ -1,0 +1,73 @@
+<%- include('../layout/adminheader') %>
+	<h2 class="page-title">Edit a Product</h2>
+	<a href="/admin/product" class="btn btn-primary">Back to all Product</a>
+	<br>
+	<br>
+
+
+	<form method="post" action="/admin/product/edit-product" enctype="multipart/form-data">
+		<div class="form-group">
+			<label>Title</label>
+			<input type="text" name="title" class="form-control" value="<%- title %>" placeholder="title">
+		</div>
+		<div class="form-group">
+			<label>Description</label>
+            <textarea name="desc" class="form-control" id="" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
+		</div>
+		<div class="form-group">
+			<label>Categori *</label>
+            <select name="categories" class="form-control">
+                <% categories.forEach(function(cat){ %> 
+                    <option value="<%= cat.link %>"
+                        <% if(cat.link == categories){ %>
+                            selected="selected"
+                            <% } %>
+                        ><%= cat.title %>
+                    </option>
+                <% }); %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" name="price" class="form-control" value="<%= price %>" placeholder="harga">
+        </div>
+        <div class="form-group">
+            <label>Curent Image</label>
+        <p>
+            <% if(image == ""){ %>
+            <img src="/images/noimage.png" class="curentimage" >
+            <% }else{ %>
+                <img src="/product_images/<%= id %>/<%= image %>" class="curentimage">
+                <% } %>
+        </p>    
+        </div>
+        <div class="form-group">
+            <label>Upload Image</label>
+            <input name="image" type="file" class="form-control" id="img">
+            <input type="hidden" name="noimage"  id="noimage">
+            <input type="hidden" name="piimage" value="<%= image %>">
+            <input type="hidden" name="id" value="<%= id %>">
+            <img src="#" alt="" id="imgPreview">
+
+        </div>
+
+		<button class="btn btn-primary">Kirim</button>
+    </form>
+    
+    <script>
+        function readURL(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+
+                reader.onload = function(e){
+                    $('#imgPreview').attr('src', e.target.result).width(100).height(100);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#img').change(function(){
+            readURL(this);
+        }); 
+
+    </script>
+<%- include('../layout/adminfooter') %>

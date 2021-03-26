@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<% include('../layout/adminheader') %>
+	<h2 class="page-title">page data</h2>
+	<a href="admin/add-page" class="btn btn-primary">Add a new page</a>
+	<br>
+	<br>
+
+	<table class="table table-striped">
+		<thead>
+			<tr class="home">
+				<th>Title</th>
+				<th>Edit</th>
+				<th>Delet</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% pages.forEach(function(page){ %>
+				<tr id="id_<%= page._id %>" class="<%= page.link %>">
+					<td><%= page.title %></td>
+					<td><a href="/admin/edit-page/<%= page._id %>">Edit</a></td>
+					<%= if(page.link == "home"){ %>
+					<td></td>
+					<%= }else %>
+					<td><a href="/admin/Delete-page/<%= page._id %>">Delete</a></td>
+					<% } %>
+				</tr>
+			<% }) %>
+		</tbody>
+	</table>
+
+	<% include('../layout/adminfooter') %>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<%- include ('layout/header') -%>
+
+	<div class="row products">
+        <% product.forEach(function(pro){ %>
+            <div class="col-12 col-md-4 p">
+                <a href="/products/detail/<%= pro.link %>" class="pahref">
+                    <img src="/product_images/<%= pro._id %>/<%= pro.image %>" alt="" class="pimage">
+                </a>
+                <h3><%= pro.title %></h3>
+                <h4>Rp. <%= pro.price %></h4>
+                <a href="/products/detail/<%= pro.link %>" class="pdetail">View details</a>
+            </div>
+        <% }); %>
+    </div>
+
+<%- include ('layout/footer') -%>
